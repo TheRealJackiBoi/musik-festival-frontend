@@ -9,7 +9,7 @@ import firebase from '../firebase.js'
 
 const ENDPOINT = "https://musik-festival-backend-2dqkf.ondigitalocean.app/socket";
 
-const socket = socketIOClient("https://musik-festival-backend-2dqkf.ondigitalocean.app:8080/socket");
+const socket = socketIOClient("https://musik-festival-backend-2dqkf.ondigitalocean.app/socket");
 
 
 
