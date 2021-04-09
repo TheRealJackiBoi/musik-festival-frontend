@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body, html{
+  font-family:'Open Sans';
+}
+.App {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 8fr 2fr;
+}
+
+#video-vote {
+  display: grid;
+  grid-template-rows: 8fr 2fr;
+}
+
+#voting {
+  background-color: lightgray;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap:4rem;
+  padding:2rem;
+}
+
+#voting button{
+  border-radius:1rem;
+}
+
+#video-player{
+  background:black;
+}
+#video-player div:first-of-type {
+  width:100%!important;
+  height: 100%!important;
+}
+
+#chat {
+  display: grid;
+  grid-template-rows: 10fr 1fr;
+}
+#chat h2 {
+  font-size: 1rem;
+  color: #000E;
+
+  margin: 0;
+  padding: 0;
+}
+
+#chat p {
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+#chat-messages {
+  padding: 1rem;
+}
+
+#chat-input {
+  display: grid;
+  grid-template-columns: 8fr 2fr;
+  padding: 1rem;
+}
+
+.user-message {
+  text-align: right;
+}
+.user-message h2 {
+ color: aqua;
+}
