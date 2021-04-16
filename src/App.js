@@ -9,6 +9,7 @@ import firebase from './firebase.js'
 import 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
+const db = firebase.firestore();
 const auth = firebase.auth();
 
 export function App() {    
@@ -22,7 +23,7 @@ export function App() {
         </div>
 
         
-          <Chat user={user} auth={auth}/>
+          <Chat user={user} auth={auth} db={db} />
       </div>
     )
 }

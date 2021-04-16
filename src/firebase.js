@@ -1,5 +1,6 @@
 import firebase from 'firebase';
 
+
 const firebaseConfig = {
     apiKey: "AIzaSyAqTzo-Dw0BRpn-CtcoMKwBTinuyMcw05w",
     authDomain: "musik-festival.firebaseapp.com",

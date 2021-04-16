@@ -2,28 +2,32 @@ import React, {Component, useState, useEffect} from 'react';
 
 import {Login} from './Login';
 
-
-import socketIOClient from "socket.io-client";
 import firebase from '../firebase.js'
 
-
-const ENDPOINT = "https://musik-festival-backend-2dqkf.ondigitalocean.app/";
-
-const socket = socketIOClient("https://musik-festival-backend-2dqkf.ondigitalocean.app/");
 
 
 
 export function Chat(props) {
-    
-    let number = 0
+        
+    const [chat, setChat] = useState([]);
 
-    //let {chat} = useState(0);
+    const chatRef = props.db.collection("chat");
+    async function getMessages() {
+        const snapshot = await chatRef.get();
+        let messages = [];
+            snapshot.forEach(msg => {
+                const messageObject = msg.data(); 
+                console.log(msg.id, '=>', msg.data());
+                    messages.push(messageObject);
+                    console.log(msg);
+            });
+        
+        setChat(messages.reverse());
+    }
 
-    const [response, setResponse] = useState([]);
     useEffect(() => {
-        socket.on("NewMessage", data => {
-            setResponse(response => response.concat(data));
-        });
+        getMessages();
+        
    }, []);
 
 
@@ -31,10 +35,10 @@ export function Chat(props) {
         return(
             <div id="chat">
                 <div id="chat-messages">
-                {response.map((msg) => 
-                    <div className={props.user && props.user.displayName === msg.sender ? "user-message" : "incomeing-message" }>
-                        <h2>{msg.sender}</h2>
-                        <p>{msg.message}</p>
+                {chat.map((msg) => 
+                    <div className={props.user && props.user.displayName === msg.name ? "user-message" : "incomeing-message" }>
+                        <h2>{msg.name}</h2>
+                        <p>{msg.value}</p>
                     </div>
                     )}
                 </div>
@@ -50,10 +54,9 @@ export function Chat(props) {
 
                 <button id="send" onClick={() => {
                     const textBox = document.getElementById('text');
-                    const newMessage = {sender: props.user.displayName, message: textBox.value}
+                    const newMessage = {name: props.user.displayName, value: textBox.value};
+                    chatRef.doc().set(newMessage).then(ref => console.log('added new msg'));
                     textBox.value = "";
-                    socket.emit("addMessage", newMessage);
-                    setResponse(response => response.concat(newMessage));
                }}>Send</button>
             </div>
                     
