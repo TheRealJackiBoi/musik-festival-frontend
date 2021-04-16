@@ -28,7 +28,7 @@ export function Chat(props) {
     useEffect(() => {
         getMessages();
         
-   }, []);
+   }, [getMessages]);
 
 
 
