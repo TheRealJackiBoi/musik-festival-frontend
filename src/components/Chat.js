@@ -57,6 +57,7 @@ export function Chat(props) {
                     const newMessage = {name: props.user.displayName, value: textBox.value};
                     chatRef.doc().set(newMessage).then(ref => console.log('added new msg'));
                     textBox.value = "";
+                    getMessages();
                }}>Send</button>
             </div>
                     
