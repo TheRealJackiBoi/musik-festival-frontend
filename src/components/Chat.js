@@ -25,6 +25,20 @@ export function Chat(props) {
         setChat(messages.reverse());
     }
 
+    function handleKeyPress(e){
+        if (e.key == "Enter"){
+           sendMessage();
+        }
+    }
+
+    function sendMessage(){
+        const textBox = document.getElementById('text');
+        const newMessage = {name: props.user.displayName, value: textBox.value};
+        chatRef.doc().set(newMessage).then(ref => console.log('added new msg'));
+        textBox.value = "";
+        getMessages();
+    }
+
     useEffect(() => {
         getMessages();
         
@@ -46,19 +60,13 @@ export function Chat(props) {
 
                 {
                     props.user ? 
-                    <input id="text" placeholder="Chat here..." autoComplete="off">
+                    <input id="text" placeholder="Chat here..." autoComplete="off" onKeyDown={handleKeyPress}>
                     </input>
                     :
                     <Login auth={props.auth} user={props.user}/>
                 }
 
-                <button id="send" onClick={() => {
-                    const textBox = document.getElementById('text');
-                    const newMessage = {name: props.user.displayName, value: textBox.value};
-                    chatRef.doc().set(newMessage).then(ref => console.log('added new msg'));
-                    textBox.value = "";
-                    getMessages();
-               }}>Send</button>
+                <button id="send" onClick={sendMessage}>Send</button>
             </div>
                     
               
