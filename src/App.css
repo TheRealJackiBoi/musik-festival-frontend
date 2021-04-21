@@ -43,7 +43,7 @@ body, html{
 #chat {
   display: grid;
   grid-template-rows: 10fr 1fr;
-  overflow: scroll;
+
 }
 #chat h2 {
   font-size: 1rem;
@@ -61,6 +61,9 @@ body, html{
 
 #chat-messages {
   padding: 1rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
 }
 
 #chat-input {
@@ -71,7 +74,9 @@ body, html{
 
 .user-message {
   text-align: right;
+
 }
 .user-message h2 {
  color: aqua;
+
 }

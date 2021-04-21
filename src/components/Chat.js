@@ -49,7 +49,7 @@ export function Chat(props) {
         return(
             <div id="chat">
                 <div id="chat-messages">
-                {chat.map((msg) => 
+                    {chat.map((msg) => 
                     <div className={props.user && props.user.displayName === msg.name ? "user-message" : "incomeing-message" }>
                         <h2>{msg.name}</h2>
                         <p>{msg.value}</p>
@@ -58,18 +58,16 @@ export function Chat(props) {
                 </div>
                 <div id="chat-input">
 
-                {
-                    props.user ? 
-                    <input id="text" placeholder="Chat here..." autoComplete="off" onKeyDown={handleKeyPress}>
-                    </input>
-                    :
-                    <Login auth={props.auth} user={props.user}/>
-                }
+                    {
+                        props.user ? 
+                        <input id="text" placeholder="Chat here..." autoComplete="off" onKeyDown={handleKeyPress}>
+                        </input>
+                        :
+                        <Login auth={props.auth} user={props.user}/>
+                    }
 
-                <button id="send" onClick={sendMessage}>Send</button>
-            </div>
-                    
-              
+                    <button id="send" onClick={sendMessage}>Send</button>
+                </div>
             </div>
         );
 }
