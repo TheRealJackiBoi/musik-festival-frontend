@@ -33,10 +33,12 @@ export function Chat(props) {
 
     function sendMessage(){
         const textBox = document.getElementById('text');
-        const newMessage = {name: props.user.displayName, value: textBox.value};
-        chatRef.doc().set(newMessage).then(ref => console.log('added new msg'));
-        textBox.value = "";
-        getMessages();
+        if (textBox.value != ""){
+            const newMessage = {name: props.user.displayName, value: textBox.value, time: Date.now()};
+            chatRef.doc().set(newMessage).then(ref => console.log('added new msg'));
+            textBox.value = "";
+            getMessages();
+        }
     }
 
     useEffect(() => {
@@ -49,7 +51,7 @@ export function Chat(props) {
         return(
             <div id="chat">
                 <div id="chat-messages">
-                    {chat.map((msg) => 
+                    {chat.sort((a, b) => (a.time > b.time) ? 1 : -1).map((msg) => 
                     <div className={props.user && props.user.displayName === msg.name ? "user-message" : "incomeing-message" }>
                         <h2>{msg.name}</h2>
                         <p>{msg.value}</p>
