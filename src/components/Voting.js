@@ -30,7 +30,7 @@ export function Voting() {
                 let i = 0; 
                 let newButtons = [];
                 result.items.forEach(video => {
-                    newButtons.push({videoName: video.snippet.title});
+                    newButtons.push({videoName: video.snippet.title.replace("(Official Video)", "").replace("(Official Music Video)", "").replace("(Music Video)", "")});
                     console.log(video.snippet.title);
                 });
 
