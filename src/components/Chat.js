@@ -62,8 +62,8 @@ export function Chat(props) {
 
                     {
                         props.user ? 
-                        <input id="text" placeholder="Chat here..." autoComplete="off" onKeyDown={handleKeyPress}>
-                        </input>
+                        <textarea id="text" placeholder="Chat here..." autoComplete="off" onKeyDown={handleKeyPress}>
+                        </textarea>
                         :
                         <Login auth={props.auth} user={props.user}/>
                     }

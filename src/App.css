@@ -21,7 +21,7 @@ body, html{
 }
 
 #voting {
-  background-color: lightgray;
+  background-color: whitesmoke;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap:4rem;
@@ -30,6 +30,8 @@ body, html{
 
 #voting button{
   border-radius:1rem;
+  background-color: #109D10;
+  color:white;
 }
 
 #video-player{
@@ -46,9 +48,10 @@ body, html{
   overflow-y: scroll;
   overflow-x: hidden;
 
+  background-color: whitesmoke;
+
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
-
 }
 #chat h2 {
   font-size: 1rem;
@@ -69,12 +72,18 @@ body, html{
   overflow-y: scroll;
   overflow-x: hidden;
 
+  scrollbar-color: #109D10 whitesmoke;
 }
 
 #chat-input {
   display: grid;
   grid-template-columns: 8fr 2fr;
   padding: 1rem;
+}
+
+#chat button {
+  background-color: #109D10;
+  color:white;
 }
 
 .user-message {
