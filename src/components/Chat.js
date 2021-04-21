@@ -17,9 +17,9 @@ export function Chat(props) {
         let messages = [];
             snapshot.forEach(msg => {
                 const messageObject = msg.data(); 
-                console.log(msg.id, '=>', msg.data());
-                    messages.push(messageObject);
-                    console.log(msg);
+               // console.log(msg.id, '=>', msg.data());
+                messages.push(messageObject);
+               // console.log(msg);
             });
         
         setChat(messages.reverse());
