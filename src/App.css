@@ -13,28 +13,37 @@
 
 body, html{
   font-family:'Open Sans';
-}
-.App {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  
+}
+.App {
   display: grid;
   grid-template-columns: 8fr 2fr;
+  width: 100vw;
+  height: 100vh;
 }
 
 #video-vote {
   display: grid;
-  grid-template-rows: 6fr 2fr 2fr;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  grid-template-rows: 6fr 2fr;
 }
 
 #voting {
+  position:absolute;
   background-color: var(--main-background-color);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap:4rem;
   padding:2rem;
+  width:80%;
+  height:20vh;
+  transition:1s all ease-in-out;
+  top:100vh;
+}
+#voting.show{
+  top:80vh;
 }
 
 #voting button {
@@ -80,6 +89,7 @@ body, html{
 
   /* -ms-overflow-style: none;*/  /* IE and Edge */
   /*scrollbar-width: none; */ /*Firefox */
+
 }
 #chat h2 {
   font-size: 1rem;
@@ -129,6 +139,7 @@ body, html{
   grid-template-columns: 8fr 2fr;
   border: 2px solid var(--pop-color);
   background-color: var(--text-color);
+  margin: 1rem;
 }
 
 #chat-input textarea {
