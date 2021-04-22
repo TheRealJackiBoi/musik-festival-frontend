@@ -2,11 +2,13 @@
 
 * {
   box-sizing: border-box;
-  --main-background-color: #4d4d4d;
+  --main-background-color: #fefefe;
   --text-color: #fefefe;
+  --chat-text-color: #4d4d4d;
   --pop-color: #00a896;
   --pop-color-hover: #02c39a;
   --main-green: var(--pop-color);
+  --shadow-color: rgba(0,0,0,0.30);
 }
 
 body, html{
@@ -33,11 +35,23 @@ body, html{
   padding:2rem;
 }
 
-#voting button{
+#voting button {
   border-radius:1rem;
   background-color: var(--pop-color);
   color:var(--text-color);
   border: none;
+  box-shadow: 0px 3px 6px var(--shadow-color);
+}
+
+#voting button:focus {
+  outline: none;
+  border: none;
+}
+
+#voting button:active {
+  outline: none;
+  border: none;
+  box-shadow: none;
 }
 
 #video-player{
@@ -61,7 +75,7 @@ body, html{
 }
 #chat h2 {
   font-size: 1rem;
-  color: var(--text-color);
+  color: var(--chat-text-color);
 
   margin: 0;
   padding: 0;
@@ -71,7 +85,7 @@ body, html{
   font-size: 1rem;
   margin: 0;
   padding: 0;
-  color: var(--text-color); 
+  color: var(--chat-text-color); 
 }
 
 #chat-messages {
