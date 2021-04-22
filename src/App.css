@@ -98,18 +98,24 @@ body, html{
 #chat-input {
   display: grid;
   grid-template-columns: 8fr 2fr;
-  padding: 1rem;
+  border: 2px solid #109D10;
 }
 
 #chat-input textarea {
+  border: none;
   outline: none;
+  
   resize: none;
   overflow: auto;
+
+  height: 100%;
+  width: 100%;
 }
 
 #chat button {
   background-color: #109D10;
   color:white;
+  margin: .1rem;
 }
 
 
