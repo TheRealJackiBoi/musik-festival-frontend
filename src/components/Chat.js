@@ -21,8 +21,16 @@ export function Chat(props) {
                 messages.push(messageObject);
                // console.log(msg);
             });
-        
-        setChat(messages.reverse());
+
+        messages = messages.reverse().sort((a, b) => (a.time > b.time) ? 1 : -1); // Sort top to bottom chronologically
+        setChat(messages);
+        if (props.user && messages[messages.length-1].name == props.user.displayName){
+            console.log("They match!")
+            var objDiv = document.getElementById("chat-messages");
+            objDiv.scrollTop = objDiv.scrollHeight;
+        }
+
+
     }
 
     function handleKeyPress(e){
@@ -38,12 +46,12 @@ export function Chat(props) {
             chatRef.doc().set(newMessage).then(ref => console.log('added new msg'));
             textBox.value = "";
             getMessages();
+
         }
     }
 
     useEffect(() => {
         getMessages();
-        
    }, []);
 
 
@@ -51,7 +59,7 @@ export function Chat(props) {
         return(
             <div id="chat">
                 <div id="chat-messages">
-                    {chat.sort((a, b) => (a.time > b.time) ? 1 : -1).map((msg) => 
+                    {chat.map((msg) => 
                     <div className={props.user && props.user.displayName === msg.name ? "user-message" : "incomeing-message" }>
                         <h2>{msg.name}</h2>
                         <p>{msg.value}</p>
