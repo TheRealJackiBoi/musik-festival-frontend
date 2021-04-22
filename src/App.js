@@ -4,6 +4,7 @@ import {Chat} from './components/Chat';
 import {VideoPlayer} from './components/VideoPlayer';
 import {Voting} from './components/Voting';
 import {Login} from './components/Login';
+import {VideoInfo} from './components/VideoInfo';
 
 import firebase from './firebase.js'
 import 'firebase/auth';
@@ -19,6 +20,7 @@ export function App() {
           
         <div id="video-vote">
           <VideoPlayer />
+          <VideoInfo video={{title: "Never gonna give you up"}} viewers={"127.099.233"} />
           <Voting />
         </div>
 

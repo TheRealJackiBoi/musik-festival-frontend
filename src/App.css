@@ -24,7 +24,9 @@ body, html{
 
 #video-vote {
   display: grid;
-  grid-template-rows: 8fr 2fr;
+  grid-template-rows: 6fr 2fr 2fr;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 #voting {
@@ -62,6 +64,12 @@ body, html{
   height: 100%!important;
 }
 
+#VideoInfo {
+  display: grid;
+  grid-template-columns: 8fr 1fr;
+  padding: .5rem 1rem;
+}
+
 #chat {
   display: grid;
   grid-template-rows: 10fr 1fr;
@@ -70,8 +78,8 @@ body, html{
 
   background-color: var(--main-background-color);
 
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  /* -ms-overflow-style: none;*/  /* IE and Edge */
+  /*scrollbar-width: none; */ /*Firefox */
 }
 #chat h2 {
   font-size: 1rem;
