@@ -71,8 +71,28 @@ body, html{
   padding: 1rem;
   overflow-y: scroll;
   overflow-x: hidden;
+}
 
-  scrollbar-color: #109D10 whitesmoke;
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: whitesmoke;
+  border-radius: 8px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #109D10;
+  border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #1db31d;
 }
 
 #chat-input {
@@ -81,10 +101,17 @@ body, html{
   padding: 1rem;
 }
 
+#chat-input textarea {
+  outline: none;
+  resize: none;
+  overflow: auto;
+}
+
 #chat button {
   background-color: #109D10;
   color:white;
 }
+
 
 .user-message {
   text-align: right;
