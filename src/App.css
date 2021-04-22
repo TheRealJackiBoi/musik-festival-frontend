@@ -2,6 +2,11 @@
 
 * {
   box-sizing: border-box;
+  --main-background-color: #4d4d4d;
+  --text-color: #fefefe;
+  --pop-color: #00a896;
+  --pop-color-hover: #02c39a;
+  --main-green: var(--pop-color);
 }
 
 body, html{
@@ -21,7 +26,7 @@ body, html{
 }
 
 #voting {
-  background-color: whitesmoke;
+  background-color: var(--main-background-color);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap:4rem;
@@ -30,12 +35,13 @@ body, html{
 
 #voting button{
   border-radius:1rem;
-  background-color: #109D10;
-  color:white;
+  background-color: var(--pop-color);
+  color:var(--text-color);
+  border: none;
 }
 
 #video-player{
-  background:black;
+  background:var(--main-background-color);
 }
 #video-player div:first-of-type {
   width:100%!important;
@@ -48,14 +54,14 @@ body, html{
   overflow-y: scroll;
   overflow-x: hidden;
 
-  background-color: whitesmoke;
+  background-color: var(--main-background-color);
 
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
 }
 #chat h2 {
   font-size: 1rem;
-  color: #000E;
+  color: var(--text-color);
 
   margin: 0;
   padding: 0;
@@ -65,6 +71,7 @@ body, html{
   font-size: 1rem;
   margin: 0;
   padding: 0;
+  color: var(--text-color); 
 }
 
 #chat-messages {
@@ -80,25 +87,26 @@ body, html{
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: whitesmoke;
+  background: var(--main-background-color);
   border-radius: 8px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #109D10;
+  background: var(--pop-color);
   border-radius: 8px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #1db31d;
+  background: var(--pop-color-hover);
 }
 
 #chat-input {
   display: grid;
   grid-template-columns: 8fr 2fr;
-  border: 2px solid #109D10;
+  border: 2px solid var(--pop-color);
+  background-color: var(--text-color);
 }
 
 #chat-input textarea {
@@ -113,9 +121,10 @@ body, html{
 }
 
 #chat button {
-  background-color: #109D10;
+  background-color: var(--pop-color);
   color:white;
   margin: .1rem;
+  border: none;
 }
 
 
