@@ -3,7 +3,7 @@ import React, {  } from "react";
 export const VideoInfo = props => {
     return (
         <div id="VideoInfo">
-            <h1 id="video-title">{props.video.title}</h1>
+            <h1 id="video-title">{props.videoTitle}</h1>
             <div id="viewers">
                 <svg id="Lag_1" data-name="Lag 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 527.44 238.75">
                     <defs></defs>
@@ -15,7 +15,7 @@ export const VideoInfo = props => {
             </div>
             <div id="vote-below">
                 <h3>Vote for next song below!</h3>
-                <svg id="Lag_1" data-name="Lag 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 730 780">
+                <svg id="Lag_1" data-name="Lag 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 730 780" onClick={props.toggleVoting}>
                     <defs></defs>
                     <polyline class="cls-2" points="715 365 715 765 15 765 15 365"/><line class="cls-1" x1="15" y1="364" x2="365.46" y2="714.46"/>
                     <line class="cls-2" x1="715" y1="364" x2="365.46" y2="714.46"/><line class="cls-1" x1="15" y1="758" x2="212" y2="561"/>

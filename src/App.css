@@ -38,9 +38,9 @@ body, html{
   gap:4rem;
   padding:2rem;
   width:80%;
-  height:20vh;
+  height:12vh;
   transition:1s all ease-in-out;
-  top:100vh;
+  top:86vh;
 }
 #voting.show{
   top:80vh;

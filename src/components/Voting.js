@@ -2,7 +2,7 @@ import React, {Component, useState, useEffect} from 'react';
 
 
 
-export function Voting() {
+export function Voting(props) {
     const [buttons, setButtons] = useState([]);
 
     //setButtons(buttons => buttons.concat({videoName: "Hello"}));
@@ -40,7 +40,7 @@ export function Voting() {
       }, [])
 
     return (
-        <div id="voting">
+        <div id="voting" class={props.votingShowClass}>
             {buttons.map(button => {
                 return <VotingButton song={button} />
             })}
@@ -52,11 +52,10 @@ export function Voting() {
 
 // mini button component, so that it is possible to give the event handler the song object to process and add to votings
 const VotingButton = props => {
-const handleClick = () => {
-    if (props.onClick) {
-        props.onClick(props.item);
+    const handleClick = () => {
+        if (props.onClick) 
+            props.onClick(props.item);
     }
-}
 return (
 <button onClick={handleClick} className=""> 
     <p>{props.song.videoName}</p>
