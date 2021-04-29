@@ -7,6 +7,7 @@
   --chat-text-color: #4d4d4d;
   --pop-color: #00a896;
   --pop-color-hover: #02c39a;
+  --red-pop-color: #A80011;
   --main-green: var(--pop-color);
   --shadow-color: rgba(0,0,0,0.30);
 }
@@ -38,12 +39,13 @@ body, html{
   gap:4rem;
   padding:2rem;
   width:80%;
-  height:12vh;
+  height: 12vh;
   transition:1s all ease-in-out;
-  top:86vh;
+  top: 100vh;
+  overflow: auto;
 }
 #voting.show{
-  top:80vh;
+  top:85vh;
 }
 
 #voting button {
@@ -63,6 +65,10 @@ body, html{
   outline: none;
   border: none;
   box-shadow: none;
+}
+
+#hideButton {
+  background: var(--red-pop-color)!important;
 }
 
 #video-player{
@@ -99,14 +105,14 @@ body, html{
 }
 
 #vote-below {
-  /* display: grid;
+  display: grid;
   grid-template-columns: .5fr 1fr;
   width: 100%;
-  align-items: center; */
+  align-items: center;
 }
 
 #vote-below h3 {
-  /* width: 100%; */
+  width: 100%;
   display: inline-block;
 }
 

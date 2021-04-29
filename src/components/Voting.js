@@ -41,6 +41,7 @@ export function Voting(props) {
 
     return (
         <div id="voting" class={props.votingShowClass}>
+            <button id="hideButton" onClick={props.toggleVoting}>Hide voting</button>
             {buttons.map(button => {
                 return <VotingButton song={button} />
             })}
