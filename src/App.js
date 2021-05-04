@@ -77,7 +77,7 @@ export function App() {
             <VideoPlayer videoId={videoId} videoTime={videoTime} />
             <VideoInfo videoTitle={videoTitle} viewers={"127.099.233"} toggleVoting={toggleVoting} />
           </div>
-          <Voting votingShowClass={votingShowClass} toggleVoting={toggleVoting} />
+          <Voting votingShowClass={votingShowClass} toggleVoting={toggleVoting} db={db}/>
 
         
           <Chat user={user} auth={auth} db={db} />

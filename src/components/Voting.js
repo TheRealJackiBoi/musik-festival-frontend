@@ -3,41 +3,42 @@ import React, {Component, useState, useEffect} from 'react';
 
 
 export function Voting(props) {
-    const [buttons, setButtons] = useState([]);
+    const [buttons, setButtons] = useState([
+    {videoName: "Loading..."},
+    {videoName: "Loading..."},
+    {videoName: "Loading..."},
+    {videoName: "Loading..."},
+    {videoName: "Loading..."}]);
+
+
+    const votingRef = props.db.collection("voting");
 
     //setButtons(buttons => buttons.concat({videoName: "Hello"}));
 
     
-    // async function getVotingButtons() {
-    //     const snapshot = await chatRef.get();
-    //     let votingButtons = [];
-    //         snapshot.forEach(songData => {
-    //             const song = songData.data(); 
-    //             console.log(songData.id, '=>', songData.data());
-    //                 votingButtons.push(song);
-    //                 console.log(song);
-    //         });
+      function getVotingButtons() {
+         //let votingButtons = []
+        props.db.collection("voting").onSnapshot(snapshot => {
+             snapshot.docChanges().forEach(change => {
+                let song = change.doc.data();
+                console.log(song);
+
+                let b = buttons;
+                b[song.index].videoName = song.title
+                console.log(b);
+                setButtons([...b]);
+                //votingButtons.push({videoName: change.doc.data().title })
+            })
+        })
+       // setButtons(votingButtons);
         
-    // }
+     }
 
 
     useEffect(() => {
-        fetch("https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=RDQMoQMC86NzF38&key=AIzaSyABQyO1Hrn0HCqGgRJFZm-Wm4fqNRFcjO4")
-          .then(res => res.json())
-          .then(
-            (result) => {
-              //console.log(result);
-                let i = 0; 
-                let newButtons = [];
-                result.items.forEach(video => {
-                    newButtons.push({videoName: video.snippet.title.replace("(Official Video)", "").replace("(Official Music Video)", "").replace("(Music Video)", "")});
-                    console.log(video.snippet.title);
-                });
-
-                setButtons(newButtons);
-            },
-          )
+        getVotingButtons();
       }, [])
+
 
     return (
         <div id="voting" class={props.votingShowClass}>
@@ -61,4 +62,9 @@ return (
 <button onClick={handleClick} className=""> 
     <p>{props.song.videoName}</p>
 </button>)
+}
+
+
+function updateButton(change, context, doc){
+
 }
