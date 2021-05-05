@@ -11,6 +11,8 @@ export function Chat(props) {
         
     const [chat, setChat] = useState([]);
 
+    const [scrolling, setScrolling] = useState(false);
+
     const chatRef = props.db.collection("chat");
     async function getMessages() {
         const snapshot = await chatRef.get();
@@ -25,7 +27,11 @@ export function Chat(props) {
         messages = messages.reverse().sort((a, b) => (a.time > b.time) ? 1 : -1); // Sort top to bottom chronologically
         setChat(messages);
         if (props.user && messages[messages.length-1].name == props.user.displayName){
-            console.log("They match!")
+            //console.log("They match!")
+            var objDiv = document.getElementById("chat-messages");
+            objDiv.scrollTop = objDiv.scrollHeight;
+        }
+        if (!scrolling) {
             var objDiv = document.getElementById("chat-messages");
             objDiv.scrollTop = objDiv.scrollHeight;
         }
@@ -51,14 +57,17 @@ export function Chat(props) {
     }
 
     useEffect(() => {
+       // getMessages();
+       props.db.collection("chat").onSnapshot(snapshot => {
         getMessages();
+       });
    }, []);
 
 
 
         return(
             <div id="chat">
-                <div id="chat-messages">
+                <div id="chat-messages" onScroll={() => {setScrolling(true);}}>
                     {chat.map((msg) => 
                     <div className={props.user && props.user.displayName === msg.name ? "user-message" : "incomeing-message" }>
                         <h2>{msg.name}</h2>
