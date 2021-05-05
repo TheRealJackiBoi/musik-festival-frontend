@@ -18,8 +18,11 @@ export function App() {
   const [votingShowClass, setVotingShowClass] = useState("none");
   
   const [videoTitle, setVideoTitle] = useState("Loading...");
-  const [videoId, setVideoId] = useState("dQw4w9WgXcQ")
-  const [videoTime, setVideoTime] = useState(10)
+  const [videoId, setVideoId] = useState("dQw4w9WgXcQ");
+  const [videoTime, setVideoTime] = useState(10);
+  
+  const [hasVoted, setHasVoted] = useState(false);
+
 
   const videoInfoRef = db.collection("videoInfo");
   const timeInfoRef = db.collection("timeInfo");
@@ -27,6 +30,7 @@ export function App() {
 
   useEffect(() => {
 	  getVideoInfo();
+	  updateVideoInfo();
 	 // getVideoInfo();
   }, [])
 
@@ -40,6 +44,7 @@ export function App() {
 		});
 		///console.log(videoInfo);
 		//console.log(videoInfo.videoId);
+	
 
 		
 		if (videoId != videoInfo.videoId){
@@ -50,6 +55,24 @@ export function App() {
 			
 			getTimeInfo();
 		}
+	}
+
+	async function updateVideoInfo(){
+		db.collection("videoInfo").onSnapshot(snapshot => {
+			snapshot.docChanges().forEach(change => {
+				let videoInfo;
+
+				console.log("Video updated: " + change.doc.data().title);
+				//console.log(change.doc.data());
+				videoInfo = change.doc.data();
+				setVideoId(videoInfo.videoId);
+				setVideoTitle(videoInfo.title);
+				setHasVoted(false);
+				getTimeInfo();
+			});
+		});
+		
+	
 	}
 
 	async function getTimeInfo(){
@@ -65,6 +88,7 @@ export function App() {
 	}
 
 
+
 	function toggleVoting(){
 		setVotingShowClass((votingShowClass == "none") ? "show" : "none");
 	}
@@ -77,7 +101,7 @@ export function App() {
             <VideoPlayer videoId={videoId} videoTime={videoTime} />
             <VideoInfo videoTitle={videoTitle} viewers={"127.099.233"} toggleVoting={toggleVoting} />
           </div>
-          <Voting votingShowClass={votingShowClass} toggleVoting={toggleVoting} db={db}/>
+          <Voting votingShowClass={votingShowClass} toggleVoting={toggleVoting} db={db} hasVoted={hasVoted} setHasVoted={() => {setHasVoted(true);}}/>
 
         
           <Chat user={user} auth={auth} db={db} />

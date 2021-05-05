@@ -10,12 +10,8 @@ export function Voting(props) {
     {videoName: "Loading..."},
     {videoName: "Loading..."}]);
 
-
     const votingRef = props.db.collection("voting");
 
-    //setButtons(buttons => buttons.concat({videoName: "Hello"}));
-
-    
       function getVotingButtons() {
          //let votingButtons = []
         props.db.collection("voting").onSnapshot(snapshot => {
@@ -27,11 +23,25 @@ export function Voting(props) {
                 b[song.index].videoName = song.title
                 console.log(b);
                 setButtons([...b]);
-                //votingButtons.push({videoName: change.doc.data().title })
             })
         })
-       // setButtons(votingButtons);
-        
+     }
+
+     async function countVote(number){
+        console.log(number);
+        const snapshot = await props.db.collection("voting").get();
+        let votingInfo;
+    
+        snapshot.forEach((element) => {
+           // console.log(element.data());
+            if (element.data().index == number)
+                votingInfo = element.data();
+        });
+
+        votingInfo.votes++;
+
+        props.db.collection("voting").doc("song"+number).set(votingInfo);
+
      }
 
 
@@ -43,8 +53,8 @@ export function Voting(props) {
     return (
         <div id="voting" class={props.votingShowClass}>
             <button id="hideButton" onClick={props.toggleVoting}>Hide voting</button>
-            {buttons.map(button => {
-                return <VotingButton song={button} />
+            {buttons.map((button, index) => {
+                return <VotingButton song={button} onClick={() => {countVote(index); props.setHasVoted();}} hasVoted={props.hasVoted}/>
             })}
         </div>
     )
@@ -58,13 +68,9 @@ const VotingButton = props => {
         if (props.onClick) 
             props.onClick(props.item);
     }
-return (
-<button onClick={handleClick} className=""> 
-    <p>{props.song.videoName}</p>
-</button>)
-}
 
-
-function updateButton(change, context, doc){
-
+    return (
+    <button onClick={handleClick} className="" disabled={props.hasVoted}> 
+        <p>{props.song.videoName}</p>
+    </button>)
 }

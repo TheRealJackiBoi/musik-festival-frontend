@@ -8,6 +8,7 @@
   --pop-color: #00a896;
   --pop-color-hover: #02c39a;
   --red-pop-color: #A80011;
+  --grey-button-color: #8da8a5; 
   --main-green: var(--pop-color);
   --shadow-color: rgba(0,0,0,0.30);
 }
@@ -59,6 +60,10 @@ body, html{
 #voting button:focus {
   outline: none;
   border: none;
+}
+
+#voting button:disabled{
+  background-color: var(--grey-button-color);
 }
 
 #voting button:active {
