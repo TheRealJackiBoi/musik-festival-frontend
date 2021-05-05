@@ -21,6 +21,7 @@ export function Voting(props) {
 
                 let b = buttons;
                 b[song.index].videoName = song.title
+                b[song.index].votes = song.votes
                 console.log(b);
                 setButtons([...b]);
             })
@@ -70,7 +71,11 @@ const VotingButton = props => {
     }
 
     return (
-    <button onClick={handleClick} className="" disabled={props.hasVoted}> 
-        <p>{props.song.videoName}</p>
-    </button>)
+    <div>
+        <button onClick={handleClick} className="" disabled={props.hasVoted}> 
+            <p>{props.song.videoName}</p>
+        </button>
+        <p>{props.song.votes}{props.song.votes > 1 || props.song.votes === 0? " votes" : " vote"}</p>
+    </div>
+    )
 }

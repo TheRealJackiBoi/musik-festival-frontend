@@ -43,7 +43,6 @@ body, html{
   height: 12vh;
   transition:1s all ease-in-out;
   top: 100vh;
-  overflow: auto;
 }
 #voting.show{
   top:85vh;
@@ -51,10 +50,16 @@ body, html{
 
 #voting button {
   border-radius:1rem;
+  height: 50%;
   background-color: var(--pop-color);
   color:var(--text-color);
   border: none;
   box-shadow: 0px 3px 6px var(--shadow-color);
+}
+#voting div {
+  width: 100%;
+  color:var(--chat-text-color);
+  text-align: center;
 }
 
 #voting button:focus {
