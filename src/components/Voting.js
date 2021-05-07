@@ -3,17 +3,10 @@ import React, {Component, useState, useEffect} from 'react';
 
 
 export function Voting(props) {
-    const [buttons, setButtons] = useState([
-    {videoName: "Loading..."},
-    {videoName: "Loading..."},
-    {videoName: "Loading..."},
-    {videoName: "Loading..."},
-    {videoName: "Loading..."}]);
+    const [buttons, setButtons] = useState([ {videoName: "Loading..."}, {videoName: "Loading..."}, {videoName: "Loading..."}, {videoName: "Loading..."}, {videoName: "Loading..."}]);
 
-    const votingRef = props.db.collection("voting");
 
       function getVotingButtons() {
-         //let votingButtons = []
         props.db.collection("voting").onSnapshot(snapshot => {
              snapshot.docChanges().forEach(change => {
                 let song = change.doc.data();

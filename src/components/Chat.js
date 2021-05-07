@@ -4,9 +4,6 @@ import {Login} from './Login';
 
 import firebase from '../firebase.js'
 
-
-
-
 export function Chat(props) {
         
     const [chat, setChat] = useState([]);
@@ -19,9 +16,7 @@ export function Chat(props) {
         let messages = [];
             snapshot.forEach(msg => {
                 const messageObject = msg.data(); 
-               // console.log(msg.id, '=>', msg.data());
                 messages.push(messageObject);
-               // console.log(msg);
             });
 
         messages = messages.reverse().sort((a, b) => (a.time > b.time) ? 1 : -1); // Sort top to bottom chronologically
@@ -35,10 +30,8 @@ export function Chat(props) {
             var objDiv = document.getElementById("chat-messages");
             objDiv.scrollTop = objDiv.scrollHeight;
         }
-
-
     }
-
+    
     function handleKeyPress(e){
         if (e.key == "Enter"){
            sendMessage();
